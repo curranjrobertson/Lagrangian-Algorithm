@@ -26,7 +26,7 @@ q2 = fi(t);
 q3 = s(t);
 
 % Kinetic Energy
-q1Dot = diff(x, t)
+q1Dot = diff(q1, t)
 q2Dot = diff(q2, t)
 q3Dot = diff(q3, t)
 
