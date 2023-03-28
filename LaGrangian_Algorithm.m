@@ -3,13 +3,9 @@
 % March 21, 2023
 
 % Symbols
-syms k1
 syms x(t) s(t) fi(t) k
 
 % Constants
-g = 9.81;
-
-% Generalized Coordinates
 m1 = 200;
 m2 = 350;
 m3 = 0;
@@ -22,19 +18,21 @@ s3 =
 y1 = 
 y2 = 
 y3 = 
+g = 9.81;
 
+% Generalized Coordinates
 q1 = x(t);
 q2 = fi(t);
 q3 = s(t);
 
 % Kinetic Energy
-xDot = diff(x, t)
-fiDot = diff(q2, t)
-sDot = diff(q3, t)
+q1Dot = diff(x, t)
+q2Dot = diff(q2, t)
+q3Dot = diff(q3, t)
 
-T1 = (m1/2)*(q1_dot^2 + q3_dot^2);
-T2 = (m2/2)*(q2_dot^2 + q2_dot^2);
-T3 = (m3/2)*(q3_dot^2 + q2_dot^2);
+T1 = (m1/2)*(q1Dot^2);
+T2 = (m2/2)*(q2Dot^2);
+T3 = (m3/2)*(q3Dot^2);
 T = T1 + T2 + T3;
 
 % Potential Energy
@@ -53,13 +51,13 @@ V = V1 + V2 + V3;
 L = T - V
 
 % Partial Derivatives
-dL_dx = diff(L, x)
-dL_dfi = diff(L, fi)
-dL_ds = diff(L, s)
+dL_dx = diff(L, q1)
+dL_dfi = diff(L, q2)
+dL_ds = diff(L, q3)
 
-dL_dx_dot = diff(L, xDot)
-dL_dfi_dot = diff(L, fiDot)
-dL_ds_dot = diff(L, sDot)
+dL_dx_dot = diff(L, q1Dot)
+dL_dfi_dot = diff(L, q2Dot)
+dL_ds_dot = diff(L, q3Dot)
 
 % Time derivatives
 dL_dx_dot_dot = diff(dL_dx_dot, t);
