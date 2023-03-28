@@ -2,17 +2,10 @@
 % Curran Robertson
 % March 21, 2023
 
-% Symbols
-syms k1
-
-% Constants
-g = 9.81;
-
-
 % Generalized Coordinates
-m1 = 1;
-m2 = 2;
-m3 = 3;
+m1 = ;
+m2 = ;
+m3 = ;
 q1 = 
 q2 = 
 q3 = 
@@ -28,12 +21,12 @@ T3 = (m3/2)*(q3_dot^2 + q2_dot^2);
 T = T1 + T2 + T3;
 
 % Potential Energy
-V1_e = (1/2)*k1*s1^2;
-V1_g = m*g*y1;
-V2_e = (1/2)*k2*s2^2;
-V2_g = m2*g*y2;
-V3_e = (1/2)*k3*s3^2;
-V3_g = m3*g*y3;
+V1_e = (1/2)*k*s^2;
+V1_g = m*g*y;
+V2_e = (1/2)*k*s^2;
+V2_g = m2*g*y;
+V3_e = (1/2)*k*s^2;
+V3_g = m3*g*y;
 V1 = V1_e + V1_g;
 V2 = V2_e + V2_g;
 V3 = V3_e + V3_g;
