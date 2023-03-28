@@ -32,29 +32,29 @@ V = V2_e + V3_g;
 L = T - V
 
 % Partial Derivatives
-DLDx = diff(L, 1)
-DLDfi = diff(L, q2);
-DLDs = diff(L, q3);
+D1 = diff(L, q1)
+D2 = diff(L, q2);
+D3 = diff(L, q3);
 
 DLDxDot = diff(L, q1Dot);
 DLDfiDot = diff(L, q2Dot);
 DLDsDot = diff(L, q3Dot);
 
 % Time derivatives
-dL_dx_dot_dot = diff(DLDxDot, t);
-dL_dfi_dot_dot = diff(DLDfiDot, t);
-dL_ds_dot_dot = diff(DLDsDot, t);
+DLDxDotDot = diff(DLDxDot, t);
+DLDfiDotDot = diff(DLDfiDot, t);
+DLDsDotDot = diff(DLDsDot, t);
 
 % Lagrangian Equation of Motion
 q1DotDot = diff(q1, t, 2);
 q2DotDot = diff(q2, t, 2);
 q3DotDot = diff(q3, t, 2);
 
-eqn1 = dL_dx_dot_dot - dL_dx;
-eqn2 = dL_dfi_dot_dot - DLDfi;
-eqn3 = dL_ds_dot_dot - DLDs;
+eqn1 = DLDxDotDot - D1;
+eqn2 = DLDfiDotDot - D2;
+eqn3 = DLDsDotDot - D3;
 
 % Solutions
-q1Accel = solve(eqn1, q1_dot_dot)
-q2Accel = solve(eqn2, q2_dot_dot)
-q3Accel = solve(eqn3, q3_dot_dot)
+q1Accel = solve(eqn1, q1DotDot)
+q2Accel = solve(eqn2, q2DotDot)
+q3Accel = solve(eqn3, q3DotDot)
