@@ -4,23 +4,23 @@
 
 % Symbols
 syms k1
+syms x(t) s(t) fi(t) k
 
 % Constants
 g = 9.81;
 
-
 % Generalized Coordinates
-m1 = 1;
-m2 = 2;
-m3 = 3;
-q1 = 
-q2 = 
-q3 = 
+m1 = 200;
+m2 = 350;
+m3 = 0;
+q1 = x(t);
+q2 = fi(t);
+q3 = s(t);
 
 % Kinetic Energy
-q1_dot = diff(q1, t);
-q2_dot = diff(q2, t);
-q3_dot = diff(q3, t);
+xDot = diff(x, t)
+fiDot = diff(q2, t)
+sDot = diff(q3, t)
 
 T1 = (m1/2)*(q1_dot^2 + q3_dot^2);
 T2 = (m2/2)*(q2_dot^2 + q2_dot^2);
@@ -40,17 +40,16 @@ V3 = V3_e + V3_g;
 V = V1 + V2 + V3;
 
 % Lagrangian Function
-L = T - V;
+L = T - V
 
 % Partial Derivatives
-dL_dx = diff(L, x);
-dL_dfi = diff(L, fi);
-dL_ds = diff(L, s);
+dL_dx = diff(L, x)
+dL_dfi = diff(L, fi)
+dL_ds = diff(L, s)
 
-% Partial Derivatives
-dL_dx_dot = diff(L, x_dot);
-dL_dfi_dot = diff(L, fi_dot);
-dL_ds_dot = diff(L, s_dot);
+dL_dx_dot = diff(L, xDot)
+dL_dfi_dot = diff(L, fiDot)
+dL_ds_dot = diff(L, sDot)
 
 % Time derivatives
 dL_dx_dot_dot = diff(dL_dx_dot, t);
@@ -58,9 +57,13 @@ dL_dfi_dot_dot = diff(dL_dfi_dot, t);
 dL_ds_dot_dot = diff(dL_ds_dot, t);
 
 % Lagrangian Equation of Motion
+xDotDot = diff(q1, t, 2)
+fiDotDot = diff(q2, t, 2)
+sDotDot = diff(q3, t, 2)
+
 eqn1 = dL_dx_dot_dot - dL_dx;
 eqn2 = dL_dfi_dot_dot - dL_dfi;
 eqn3 = dL_ds_dot_dot - dL_ds;
-solve(eqn1, x_dot_dot);
-solve(eqn2, fi_dot_dot);
-solve(eqn3, s_dot_dot);
+xAccel = solve(eqn1, q1_dot_dot)
+angularAccel = solve(eqn2, q2_dot_dot)
+springAccel = solve(eqn3, q3_dot_dot)
