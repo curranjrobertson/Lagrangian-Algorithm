@@ -4,57 +4,45 @@
 
 % Max 3 Dof
 % No Non-conservative forces
+clear all; clc; close all;
 
 % Symbols
-syms t q1(t) q2(t) q3(t) m1 m2 m3 k s g y
-
-% Generalized Coordinates
-q1(t) = x; % x position
-q2(t) = s; % elastic stretch
-q3(t) = fi; % angle
+syms q1(t) q2(t) dq1(t) dq2(t) y1 y2 m1 m2 g
 
 % Kinetic Energy
-q1Dot = diff(q1, t);
-q2Dot = diff(q2, t);
-q3Dot = diff(q3, t);
+dq1(t) = diff(q1(t), t)
+dq2(t) = diff(q2(t), t)
 
-T1 = (m1/2)*(q1Dot^2);
-T2 = (m2/2)*(q2Dot^2);
-T3 = (m3/2)*(q3Dot^2);
-T = T1 + T2 + T3;
+T1(t) = (m1/2)*(dq1(t)^2)
+T2(t) = (m2/2)*(dq2(t)^2)
+T = T1 + T2
 
 % Potential Energy
-V2_e = (1/2)*k*s^2;
-V3_g = m3*g*y;
-V = V2_e + V3_g;
+V1 = m1*g*y1 % gravitational
+V2 = m2*g*y2 % gravitational
+V = V1 + V2
 
 % Lagrangian Function
 L = T - V
 
 % Partial Derivatives
-D1 = diff(L, q1)
-D2 = diff(L, q2);
-D3 = diff(L, q3);
+D1(t) = functionalDerivative(L, q1(t))
+D2(t) = functionalDerivative(L, q2(t))
 
-DLDxDot = diff(L, q1Dot);
-DLDfiDot = diff(L, q2Dot);
-DLDsDot = diff(L, q3Dot);
+D3(t) = functionalDerivative(L, dq1(t))
+D4(t) = functionalDerivative(L, dq2(t))
 
 % Time derivatives
-DLDxDotDot = diff(DLDxDot, t);
-DLDfiDotDot = diff(DLDfiDot, t);
-DLDsDotDot = diff(DLDsDot, t);
+D5 = functionalDerivative(D3(t), t)
+D6 = functionalDerivative(D4(t), t)
 
 % Lagrangian Equation of Motion
-q1DotDot = diff(q1, t, 2);
-q2DotDot = diff(q2, t, 2);
-q3DotDot = diff(q3, t, 2);
+accel1 = functionalDerivative(q1, t, 2)
+accel2 = functionalDerivative(q2, t, 2)
 
-eqn1 = DLDxDotDot - D1;
-eqn2 = DLDfiDotDot - D2;
-eqn3 = DLDsDotDot - D3;
+eqn1 = simplify(D5 - D1);
+eqn2 = simplify(D6 - D2);
 
 % Solutions
-q1Accel = solve(eqn1, q1DotDot)
-q2Accel = solve(eqn2, q2DotDot)
-q3Accel = solve(eqn3, q3DotDot)
+q1Accel = solve(eqn1, accel1);
+q2Accel = solve(eqn2, accel2);

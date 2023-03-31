@@ -1,0 +1,48 @@
+% Lagrangian Algorithm
+% Curran Robertson
+% March 21, 2023
+
+% Max 3 Dof
+% No Non-conservative forces
+clear all; clc; close all;
+
+% Symbols
+syms t q1 q2 dq1 dq2 y1 y2 m1 m2 g
+
+% Kinetic Energy
+T1 = (m1/2)*(dq1^2);
+T2 = (m2/2)*(dq2^2);
+T = T1 + T2;
+
+% Potential Energy
+V1 = m1*g*y1; % gravitational
+V2 = m2*g*y2; % gravitational
+V = V1 + V2;
+
+% Lagrangian Function
+L = T - V
+
+% Partial Derivatives
+D1 = diff(L, q1)
+D2 = diff(L, q2)
+
+D3 = diff(L, dq1)
+D4 = diff(L, dq2)
+
+D3(t) = matlabFunction(D3)
+D4(t) = matlabFunction(D4)
+
+% Time derivatives
+D5 = diff(D3(t), t)
+D6 = diff(D4(t), t)
+
+% Lagrangian Equation of Motion
+accel1 = diff(q1, t, 2)
+accel2 = diff(q2, t, 2)
+
+eqn1 = simplify(D5 - D1);
+eqn2 = simplify(D6 - D2);
+
+% Solutions
+q1Accel = solve(eqn1, accel1);
+q2Accel = solve(eqn2, accel2);
