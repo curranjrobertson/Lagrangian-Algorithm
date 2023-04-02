@@ -33,8 +33,8 @@ D3(t) = functionalDerivative(L, dq1(t))
 D4(t) = functionalDerivative(L, dq2(t))
 
 % Time derivatives
-D5(t) = functionalDerivative(D3(t), t)
-D6(t) = functionalDerivative(D4(t), t)
+D5 = functionalDerivative(D3(t), t)
+D6 = functionalDerivative(D4(t), t)
 
 % Lagrangian Equation of Motion
 accel1 = functionalDerivative(q1, t, 2)
