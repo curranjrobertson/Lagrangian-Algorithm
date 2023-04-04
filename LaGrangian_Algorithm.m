@@ -7,7 +7,12 @@
 clear all; clc; close all;
 
 % Symbols
-syms q1(t) q2(t) dq1(t) dq2(t) y1(t) y2(t) m1 m2 g
+syms dq1(t) dq2(t) m1 m2 g
+
+q1(t) = 
+q2(t) = 
+y1(t) = 
+y2(t) = 
 
 % Kinetic Energy
 % dq1(t) = diff(q1(t), t)
