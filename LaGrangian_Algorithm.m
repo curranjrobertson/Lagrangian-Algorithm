@@ -7,7 +7,7 @@
 clear all; clc; close all;
 
 % Symbols
-syms q1(t) q2(t) dq1(t) dq2(t) y1 y2 m1 m2 g
+syms q1(t) q2(t) dq1(t) dq2(t) y1(t) y2(t) m1 m2 g
 
 % Kinetic Energy
 % dq1(t) = diff(q1(t), t)
@@ -18,8 +18,8 @@ T2(t) = (m2/2)*(dq2(t)^2)
 T = T1 + T2
 
 % Potential Energy
-V1 = m1*g*y1 % gravitational
-V2 = m2*g*y2 % gravitational
+V1 = m1*g*y1(t) % gravitational
+V2 = m2*g*y2(t) % gravitational
 V = V1 + V2
 
 % Lagrangian Function
@@ -49,8 +49,8 @@ eqn = simplify(eqn)
 % accel1 = functionalDerivative(q1, t, 2)
 % accel2 = functionalDerivative(q2, t, 2)
 
-eqn1 = simplify(D5 - D1);
-eqn2 = simplify(D6 - D2);
+% eqn1 = simplify(D5 - D1);
+% eqn2 = simplify(D6 - D2);
 
 % % Solutions
 % q1Accel = solve(eqn1, accel1);
