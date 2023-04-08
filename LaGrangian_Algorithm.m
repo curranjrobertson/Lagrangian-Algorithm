@@ -35,10 +35,10 @@ L = T - V
 D1(t) = functionalDerivative(L, q1(t))
 D2(t) = functionalDerivative(L, q2(t))
 
-subs(L(t),diff(x(t), t), diffq1)
-D3(t) = functionalDerivative(L, diffq1(t))
-subs(L(t),diff(x(t), t), diffq2)
-D4(t) = functionalDerivative(L, diffq2)
+L(t) = subs(L(t),diff(x(t), t), diffq1(t))
+D3(t) = functionalDerivative(L(t), diffq1(t))
+L(t) = subs(L(t),diff(fi(t), t), diffq2(t))
+D4(t) = functionalDerivative(L, diffq2(t))
 
 % Time derivatives
 D5(t) = diff(subs(D3(t),dq1,diff(q1,t)), t)
