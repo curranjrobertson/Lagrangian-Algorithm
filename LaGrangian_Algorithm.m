@@ -8,10 +8,10 @@
 clear all; clc; close all;
 
 % Symbols
-syms m1 m2 g l s fi(t) x(t)
+syms m1 m2 g l s fi(t) x(t) diffq1(t) diffq2(t)
 
 q1(t) = x(t)   
-q2(t) = x(t)+(l+s)*sin(fi(t))
+q2(t) = fi(t)
 y1 = 0
 y2(t) = -(l+s)*cos(fi(t))
 
@@ -35,8 +35,10 @@ L = T - V
 D1(t) = functionalDerivative(L, q1(t))
 D2(t) = functionalDerivative(L, q2(t))
 
-D3(t) = functionalDerivative(L, dq1(t))
-D4(t) = functionalDerivative(L, dq2(t))
+subs(L(t),diff(x(t), t), diffq1)
+D3(t) = functionalDerivative(L, diffq1)
+subs(L(t),diff(x(t), t), diffq2)
+D4(t) = functionalDerivative(L, diffq2)
 
 % Time derivatives
 D5(t) = diff(subs(D3(t),dq1,diff(q1,t)), t)
