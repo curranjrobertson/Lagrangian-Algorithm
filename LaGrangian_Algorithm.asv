@@ -8,11 +8,11 @@
 clear all; clc; close all;
 
 % Symbols
-syms m1 m2 g l s fi(t) x(t)
+syms m1 m2 g
 
-q1(t) = x(t)   
-q2(t) = x(t)+(l+s)*sin(fi(t))
-y1 = 0
+q1(t) = theta(t)    
+q2(t) = x(t)
+y1(t) = 0
 y2(t) = -(l+s)*cos(fi(t))
 
 % Kinetic Energy
@@ -24,7 +24,7 @@ T2(t) = (m2/2)*(dq2(t)^2)
 T = T1 + T2
 
 % Potential Energy
-V1 = m1*g*y1 % gravitational
+V1 = m1*g*y1(t) % gravitational
 V2 = m2*g*y2(t) % gravitational
 V = V1 + V2
 
