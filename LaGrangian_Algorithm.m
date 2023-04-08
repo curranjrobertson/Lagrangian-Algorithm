@@ -41,8 +41,8 @@ L(t) = subs(L(t),diff(fi(t), t), diffq2(t))
 D4(t) = functionalDerivative(L, diffq2(t))
 
 % Time derivatives
-D5(t) = diff(subs(D3(t),dq1,diff(q1,t)), t)
-D6(t) = diff(subs(D4(t),dq2,diff(q2,t)), t)
+D5(t) = diff(subs(D3(t),diffq1(t),diff(q1,t)), t)
+D6(t) = diff(subs(D4(t),diffq2(t),diff(q2,t)), t)
 
 % Lagrangian Equation of Motion
 eqn = [simplify(D5 - D1); simplify(D6 - D2)] == 0
